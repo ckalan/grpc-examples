@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.cagataykalan.grpc.lib";
+option java_outer_classname = "CountryServiceProto";
+
+// The greeting service definition.
+service CountryService {
+  // Query countries with prefix
+  rpc Query (QueryCountryRequest) returns (stream CountrySearchResultPage) {
+  }
+}
+
+// The request message containing the user's name.
+message QueryCountryRequest {
+  int32 pageSize = 1;
+  string prefix = 2;
+}
+
+// The response message containing the greetings
+message CountrySearchResultPage {
+  message Item {
+    string name = 1;
+    string code = 2;
+  }
+
+  repeated Item items = 1;
+}
