@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.security:spring-security-config'
     implementation "net.devh:grpc-server-spring-boot-starter:${grpcStarterVersion}"
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation project(':grpc-lib')

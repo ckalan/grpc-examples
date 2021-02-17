@@ -7,7 +7,11 @@ spring:
 grpc:
   client:
     example-grpc-server:
-      address: 'static://127.0.0.1:9898'
+      address: 'static://localhost:9898'
       enableKeepAlive: true
       keepAliveWithoutCalls: true
-      negotiationType: plaintext
+      security:
+        clientAuthEnabled: true
+        certificateChain: classpath:certificates/client.crt
+        privateKey: classpath:certificates/client.key
+        trustCertCollection: classpath:certificates/trusted-server.crt.collection

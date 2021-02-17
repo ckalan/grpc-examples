@@ -4,3 +4,11 @@ spring:
 grpc:
   server:
     port: 9898
+    security:
+      enabled: true
+      certificateChain: classpath:certificates/server.crt
+      privateKey: classpath:certificates/server.key
+      trust-cert-collection: classpath:certificates/trusted-clients.crt.collection
+      client-auth: require
+
+
