@@ -20,7 +20,7 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}" apply false
     id "com.google.protobuf" version "${protobufGradlePluginVersion}" apply false
-    id "io.freefair.lombok" version "${lombokVersion}"
+    id "io.freefair.lombok" version "${lombokVersion}" apply false
 }
 
 group 'com.ckalan.grpc-example'
@@ -30,12 +30,16 @@ repositories {
     mavenCentral()
 }
 
-subprojects {
+subprojects { project ->
+    if (project.name.contains('nodejs')) {
+        return
+    }
+
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'eclipse'
-    apply plugin: 'io.spring.dependency-management'
     apply plugin: 'io.freefair.lombok'
+    apply plugin: 'io.spring.dependency-management'
 
     compileJava {
         sourceCompatibility = JavaVersion.VERSION_11
